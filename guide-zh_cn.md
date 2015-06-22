@@ -29,3 +29,18 @@ Haskell[邮件列表](https://wiki.haskell.org/Mailing_lists)。
 ---
 
 上述部分内容来自[the Recurse Center手册](https://www.recurse.com/manual)。感谢他们的分享！
+
+# 什么是Haskell、GHC和Cabal
+
+Haskell是一门编程语言，有关它的信息请参阅下面这篇报告，此报告最新版为2010版：
+[onlinereport](http://www.haskell.org/onlinereport/haskell2010/)
+
+## GHC
+
+[GHC](http://www.haskell.org/ghc/)是Haskell最主流的开发工具，它包含一个编译器、REPL（解释器）、包管理及其它工具。
+
+## Cabal
+
+[Cabal](https://www.haskell.org/cabal/download.html)是一个集项目管理及依赖解析于一身的工具，通常你会用它将项目安装到专属沙箱中。
+
+Cabal相当于Ruby Bundler、Python pip、Node NPM、Maven等包管理组件。GHC可以用来打包，Cabal则可以选择安装版本。
