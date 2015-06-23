@@ -41,6 +41,49 @@ Haskell是一门编程语言，有关它的信息请参阅下面这篇报告，�
 
 ## Cabal
 
-[Cabal](https://www.haskell.org/cabal/download.html)是一个集项目管理及依赖解析于一身的工具，通常你会用它将项目安装到专属沙箱中。
+[Cabal](https://www.haskell.org/cabal/download.html)是一个集项目管理及依赖解析于一身的工具，通常你会用它将项目安装到专属沙盒中。
 
 Cabal相当于Ruby Bundler、Python pip、Node NPM、Maven等包管理组件。GHC可以用来打包，Cabal则可以选择安装版本。
+
+# 安装Haskell和Cabal
+
+## Ubuntu
+
+[这个PPA](http://launchpad.net/~hvr/+archive/ghc)很棒！我在我所有的Linux开发及构建机器上都使用它。
+
+具体步骤如下：
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get install python-software-properties # Ubuntu 12.04及以下版本
+$ sudo apt-get install software-properties-common # Ubuntu 12.04及以上版本
+$ sudo add-apt-repository -y ppa:hvr/ghc
+$ sudo apt-get update
+$ sudo apt-get install cabal-install-1.20 ghc-7.8.4 happy-1.19.4 alex-3.1.3
+```
+
+接着，把以下路径加入你的`$PATH`环境变量(bash\_profile, zshrc, bashrc等)中：
+
+```
+~/.cabal/bin:/opt/cabal/1.20/bin:/opt/ghc/7.8.4/bin:/opt/happy/1.19.4/bin:/opt/alex/3.1.3/bin
+```
+
+*注：* 你也可以将`.cabal-sandbox/bin`添加到路径中，这样当你的当前工作目录为cabal沙盒时，你可以从命令行获取到正在开发的代码。
+
+## Debian
+
+### 使用Ubuntu PPA
+
+如果你使用的是非稳定版，你可以用和Ubuntu一样的流程，只是需要在命令`sudo add-apt-repository -y ppa:hvr/ghc`后加上：
+
+```bash
+$ sudo sed -i s/jessie/trusty/g /etc/apt/sources.list.d/hvr-ghc-jessie.list
+```
+
+对于其它的Debian版本，你只需要将上面这条命令中所有的`jessie`替换为你的版本名即可。
+
+如果因为某些原因致使文件`/etc/apt/sources.list.d/hvr-ghc-jessie.list`不存在，此时`/etc/apt/sources.list`文件里应该会包含这样的一行：
+
+    deb http://ppa.launchpad.net/hvr/ghc/ubuntu jessie main
+
+将此行中的`jessie`用`trusty`替换即可。
