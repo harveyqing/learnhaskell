@@ -87,3 +87,36 @@ $ sudo sed -i s/jessie/trusty/g /etc/apt/sources.list.d/hvr-ghc-jessie.list
     deb http://ppa.launchpad.net/hvr/ghc/ubuntu jessie main
 
 将此行中的`jessie`用`trusty`替换即可。
+
+### 手动编译
+
+[这](http://www.davesquared.net/2014/05/platformless-haskell.html)是一篇Mac OS X上的安装指南。
+
+注意：
+
+- 编译前根据自己的需要来设定ghc的目录前缀(prefix)。
+- 不要直接下载`cabal-install`二进制程序，请下载源码并运行`bootstrap.sh`脚本。
+
+## Fedora 21
+
+从非官方仓库安装Haskell 7.8.4（Fedora 22以上已经有官方版本）：
+
+```bash
+$ sudo yum-config-manager --add-repo \
+> https://copr.fedoraproject.org/coprs/petersen/ghc-7.8.4/repo/fedora-21/petersen-ghc-7.8.4-fedora-21.repo 
+$ sudo yum install ghc cabal-install
+```
+
+根据[petersen/ghc-7.8.4 copr page](https://copr.fedoraproject.org/coprs/petersen/ghc-7.8.4/)所述，此版本的ghc无法与Fedora/EPEL ghc并存。
+
+## Arch Linux
+
+从Arch Linux官方仓库安装Haskell：
+
+```bash
+$ sudo pacman -S cabal-install ghc happy alex haddock
+```
+
+## Gentoo
+
+在Gentoo上，你可以通过Portage分别安装Haskell平台的各个组件。
