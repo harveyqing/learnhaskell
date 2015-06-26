@@ -119,4 +119,54 @@ $ sudo pacman -S cabal-install ghc happy alex haddock
 
 ## Gentoo
 
-在Gentoo上，你可以通过Portage分别安装Haskell平台的各个组件。
+在Gentoo上，你可以通过Portage分别安装Haskell平台的各个组件。如果你设定了`ACCEPT_KEYWORDS=arch`（而不是`ACCEPT_KEYWORDS=~arch`），Portage将安装老版本的Haskell。因此，一旦你使用了`ACCEPT_KEYWORDS=arch`，请将下面的命令添加到`/etc/portage/package.keywords`中：
+
+    dev-haskell/cabal-install
+    dev-lang/ghc
+
+然后执行：
+
+```bash
+$ emerge -jav dev-lang/ghc dev-haskell/cabal-install
+```
+
+Gentoo会保留一个“稳定”（老的）版本的`cabal-install`在Portage树中(Portage tree)，
+如果你想通过`cabal-install`安装新版本，请执行以下操作（注意反斜杠是必须的）：
+
+```bash
+$ \cabal update                # 反斜杠
+$ \cabal install cabal-install # 必须
+```
+
+现在你已经用portage在系统级安装了cabal，也通过`cabal-install`在home目录下安装了局部cabal，下一步是要确保每次你在终端中运行的`cacal`都是home目录下最新的局部cabal。你不妨将下面设置添加到shell配置文件中：
+
+```bash
+PATH=$PATH:$HOME/.cabal/bin
+alias cabal="$HOME/.cabal/bin/cabal"
+```
+
+如果你不确定你使用的是哪个shell，那么多半是Bash。如果你用的是Bash，那么修改的配置文件是`~/.bashrc`；如果你用的是Z-shell，则需修改`~/.zshrc`。你可以通过下述命令找出shell版本：
+
+```bash
+echo $SHELL | xargs basename
+```
+
+我使用的是zsh，因此执行上述命令会输出`zsh`。
+
+完成上述各项安装任务后，你可以接着安装`alex`和`happy`这两个工具：
+
+```bash
+$ cabal install alex happy
+```
+
+恭喜！你已经有了一个可以工作的Haskell环境了。
+
+## Mac OS X
+
+### 10.9
+
+安装[GHC for Mac OS X](http://ghcformacosx.github.io/)，它包含了GHC和Cabal。安装完成后，它会提示你如何将GHC和Cabal添加到系统路径中。
+
+### 10.6-10.8
+
+用[这个tarball](https://www.haskell.org/platform/download/2014.2.0.0/ghc-7.8.3-x86_64-apple-darwin-r3.tar.bz2)来完成安装。
