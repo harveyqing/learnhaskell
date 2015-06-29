@@ -170,3 +170,28 @@ $ cabal install alex happy
 ### 10.6-10.8
 
 用[这个tarball](https://www.haskell.org/platform/download/2014.2.0.0/ghc-7.8.3-x86_64-apple-darwin-r3.tar.bz2)来完成安装。
+
+## Windows
+
+- [windows minimal GHC installer](http://neilmitchell.blogspot.com/2014/12/beta-testing-windows-minimal-ghc.html)
+  它可以用来编译`network`等包。虽然从严格意义上讲它还只是个Beta版，
+  但应该可以满足读这篇指南的任何人。
+
+记得用系统管理员的身份来安装，因为安装需要将文件拷贝到Program Files目录的权限。
+
+## 其它Linux用户
+
+下载cabal和ghc最新的二进制安装文件：
+
+- [GHC](http://www.haskell.org/ghc/).
+
+- [Cabal](https://www.haskell.org/cabal/download.html).
+
+## 其它的类Unix系统用户
+
+用包管理器安装GHC盒Cabal，然后将`~/.cabal/bin`添加到系统路径`$PATH`中，最后更新`cabal`和安装`alex`和`happy`。
+
+```bash
+$ cabal update
+$ cabal install cabal-install alex happy
+```
